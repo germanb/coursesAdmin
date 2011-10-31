@@ -34,41 +34,32 @@
                                     <g:textField name="sector" value="${operariosInstance?.sector}" />
                                 </td>
                             </tr>
-                        
                         </tbody>
                     </table>
                 </div>
             </g:form>
             </div>
+            <br><br>
+           <button id="continue">Continuar</button>
+           <button id="clear">Limpiar</button>
         </div>
+        <script type="text/javascript">
         
-                <script type="text/javascript">
         
-        $(function() {
-            $('#dialog-form').dialog({
-                autoOpen: true,
-                height: 'auto',
-                width: 350,
-                modal: true,
-                close: function(ev, ui) {  $(this).dialog("destroy"); },
-                buttons: {
-                    'Continuar': function() {
-	        	    	var sector = $("#sector").val();
-	        	    	$.post('/coursesAdmin/operarios/save',{sector:sector},  function(data) {
-		                	$('#dialog-form').html(data);
-                        });
-        
-                    },
-                    'Cancelar': function() {
-                        $(this).dialog('close');
-                        $(this).dialog("destroy");
-                    }
-                }
+        $("button").button();
+	    $("#continue").click(function(){
+	    	var sector = $("#sector").val();
+	    	$.post('/coursesAdmin/operarios/save',{sector:sector},  function(data) { 
+	    		$('.body').html(data);
             });
-        });
-        $('#Operarios_add').click(function() {
-        	$('#dialog-form').dialog('open');
-        	});
+	    });
+	    $("#clear").click(function(){
+		    $(':input','#dialog-form')
+		    .not(':button, :submit, :reset, :hidden')
+		    .val('')
+		    .removeAttr('checked')
+		    .removeAttr('selected');
+	    });
         </script>
     </body>
 </html>

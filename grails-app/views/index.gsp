@@ -37,11 +37,11 @@
     		$( "#accordion" ).accordion();
     	});
 	    $("#Administrativos").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/administrativos/index');
+	   		$('#pageBody').load('/coursesAdmin/administrativos/index #body');
 	   		}
 	   	);
 	    $("#Administrativos_list").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/administrativos/index');
+	   		$('#pageBody').load('/coursesAdmin/administrativos/index #body');
 	   		}
 	   	);
 	    $("#Administrativos_add").click(function(){
@@ -49,7 +49,7 @@
 	   		}
 	   	);
 	    $("#Cursos_list").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/cursos/index');
+	   		$('#pageBody').load('/coursesAdmin/cursos/index #body');
 	   		}
 	   	);
 	    $("#Cursos_add").click(function(){
@@ -57,11 +57,11 @@
 	   		}
 	   	);
 	    $("#Cursos").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/cursos/index');
+	   		$('#pageBody').load('/coursesAdmin/cursos/index #body');
 	   		}
 	   	);
 	    $("#Ediciones_list").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/ediciones/index');
+	   		$('#pageBody').load('/coursesAdmin/ediciones/index #body');
 	   		}
 	   	);
 	    $("#Ediciones_add").click(function(){
@@ -69,11 +69,11 @@
 	   		}
 	   	);
 	    $("#Ediciones").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/ediciones/index');
+	   		$('#pageBody').load('/coursesAdmin/ediciones/index #body');
 	   		}
 	   	);
 	    $("#Empleados_list").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/empleados/index');
+	   		$('#pageBody').load('/coursesAdmin/empleados/index #body');
 	   		}
 	   	);
 	    $("#Empleados_add").click(function(){
@@ -81,11 +81,11 @@
 	   		}
 	   	);
 	    $("#Empleados").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/empleados/index');
+	   		$('#pageBody').load('/coursesAdmin/empleados/index #body');
 	   		}
 	   	);
 	    $("#Operarios_list").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/operarios/index');
+	   		$('#pageBody').load('/coursesAdmin/operarios/index #body');
 	   		}
 	   	);
 	    $("#Operarios_add").click(function(){
@@ -93,7 +93,7 @@
 	   		}
 	   	);
 	    $("#Operarios").click(function(){
-	   		$('#pageBody').load('/coursesAdmin/operarios/index');
+	   		$('#pageBody').load('/coursesAdmin/operarios/index #body');
 	   		}
 	   	);
 

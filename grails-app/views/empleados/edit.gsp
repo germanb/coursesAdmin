@@ -9,12 +9,7 @@
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-        </div>
-        <div class="body">
+        <div class="ui-widget">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -69,10 +64,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="nacimiento"><g:message code="empleados.nacimiento.label" default="Nacimiento" /></label>
+                                    <label for="nacimiento"><g:message code="empleados.nacimiento.label" default="Nacimiento" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'nacimiento', 'errors')}">
-                                    <g:datePicker name="nacimiento" precision="day" value="${empleadosInstance?.nacimiento}"  />
+									<input id="datepicker">
                                 </td>
                             </tr>
                         
@@ -115,11 +110,41 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
-                    <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
-                </div>
+                <br><br>
+           		<button id="update">Actualizar</button>
             </g:form>
+            <div id="footer" style="height:100%;" class="ui-widget ui-helper-clearfix">
         </div>
+        </div>
+        <script type="text/javascript">
+
+    	$(function() {
+    		$( "#datepicker" ).datepicker();
+    	});
+    	
+        	$("button").button();
+    	    $("#update").click(function(){
+      	    	var capacitado = $("#capacitado").val();
+    	    	var codigo = $("#codigo").val();
+    	    	var direccion = $("#direccion").val();
+    	    	var firma = $("#firma").val();
+    	    	var nombre = $("#nombre").val();
+    	    	var obligatorio = $("#obligatorio").val();
+    	    	var nacimiento = $("#datepicker").val();
+    	    	var salario = $("#salario").val();
+    	    	var sexo = $("#sexo").val();
+    	    	var telefono = $("#telefono").val();
+                var id = $("#id").val();
+                var version = $("#version").val();
+                var _action_update = "Update"
+                $.post('/coursesAdmin/empleados/index', {_action_update:_action_update, id: id, version:version, 
+                	capacitado:capacitado, codigo:codigo, direccion:direccion,
+	                firma:firma, nombre:nombre, obligatorio:obligatorio, nacimiento:nacimiento, salario:salario,
+	                sexo:sexo, telefono:telefono}, function(data) {
+         	    		$('.body').html(data);
+    	    		return false;
+                });
+    	    });
+        </script>
     </body>
 </html>

@@ -50,38 +50,30 @@
                 </div>
             </g:form>
             </div>
+            <br><br>
+           <button id="continue">Continuar</button>
+           <button id="clear">Limpiar</button>
         </div>
         <script type="text/javascript">
-        
-        $(function() {
-            $('#body').dialog({
-                autoOpen: true,
-                height: 'auto',
-                width: 350,
-                modal: true,
-                close: function(ev, ui) {  $(this).dialog("destroy"); },
-                buttons: {
-                    'Continuar': function() {
-		                var categoria = $("#categoria").val();
-		                var oficina = $("#oficina").val();
-		                var tarea = $("#tarea").val();
-		                $.post('/coursesAdmin/administrativos/save', {categoria:categoria, oficina:oficina, tarea:tarea}, function(data) {
-		                	 var content = $( data ).find( '#body' );
 
-		                	$('#body').html(content);
-                        });
-        
-                    },
-                    'Cancelar': function() {
-                    	$(this).dialog("destroy");
-                        $(this).dialog('close');
-                    }
-                }
+        $("button").button();
+	    $("#continue").click(function(){
+            var categoria = $("#categoria").val();
+            var oficina = $("#oficina").val();
+            var tarea = $("#tarea").val();
+            $.post('/coursesAdmin/administrativos/save', {categoria:categoria, oficina:oficina, tarea:tarea}, function(data) {
+	    		$('.body').html(data);
             });
-        });
-        $('#Administrativos_add').click(function() {
-        	$('#body').dialog('open');
-        	});
+	    });
+	    $("#clear").click(function(){
+		    $(':input','#dialog-form')
+		    .not(':button, :submit, :reset, :hidden')
+		    .val('')
+		    .removeAttr('checked')
+		    .removeAttr('selected');
+	    });
+
+
         </script>
     </body>
 </html>

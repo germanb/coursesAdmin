@@ -3,12 +3,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'cursos.label', default: 'Cursos')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
 
-        <div class="body">
+        <div class="ui-widget" id="body">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -36,7 +37,7 @@
                     <g:each in="${cursosInstanceList}" status="i" var="cursosInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${cursosInstance.id}">${fieldValue(bean: cursosInstance, field: "id")}</g:link></td>
+                            <td><g:link action="edit" id="${cursosInstance.id}">${fieldValue(bean: cursosInstance, field: "id")}</g:link></td>
                         
                             <td>${fieldValue(bean: cursosInstance, field: "costo")}</td>
                         
@@ -56,6 +57,50 @@
             <div class="paginateButtons">
                 <g:paginate total="${cursosInstanceTotal}" />
             </div>
+            
         </div>
+             <div id="footer" style="height:100%;" class="ui-widget ui-helper-clearfix">
+                     <br><br>
+
+           <a href="/coursesAdmin" class="button">Continuar</a>
+
+        </div>
+        <script type="text/javascript">
+
+        $(".button").button();
+
+
+        
+        $(document).ready(function(){
+  		  $('.update').bind('click',function(event){
+  			event.preventDefault();
+  		    $.get(this.href,{},function(response){ 
+  		 	   $('.body').html(response)
+  		    })	
+  		 })
+  		});
+
+	    $("#continue").click(function(){
+	    	var costo = $("#costo").val();
+	    	var descripcion = $("#descripcion").val();
+	    	var destinatarios = $("#destinatarios").val();
+	    	var horas = $("#horas").val();
+	    	var nombre = $("#nombre").val();
+	    	var obligatorio = $("#obligatorio").val();
+	    	$.post('/coursesAdmin/cursos/save',{costo:costo, descripcion:descripcion, horas:horas,destinatarios:destinatarios,
+	    		nombre:nombre, obligatorio:obligatorio },  function(data) {
+	    		$('.body').html(data);
+            });
+	    });
+	    $("#clear").click(function(){
+		    $(':input','#dialog-form')
+		    .not(':button, :submit, :reset, :hidden')
+		    .val('')
+		    .removeAttr('checked')
+		    .removeAttr('selected');
+	    });
+
+
+        </script>
     </body>
 </html>

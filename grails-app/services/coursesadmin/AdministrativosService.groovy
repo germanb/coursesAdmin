@@ -7,7 +7,7 @@ class AdministrativosService {
 	
 	def prepareResponse(domainInstance) {
 		def g = grailsApplication.mainContext.getBean('org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib')
-		def postResponse = new AjaxPostResponseController()
+
 		if (domainInstance.hasErrors()) {
 			g.eachError(bean: domainInstance) {
 				postResponse.errors."${it.field}" = g.message(error: it)

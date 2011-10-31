@@ -70,8 +70,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="buttons">
-            </div>
+
         </div>
     </body>
 </html>

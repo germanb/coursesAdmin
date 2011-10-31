@@ -1,5 +1,3 @@
-
-
 <%@ page import="coursesadmin.Ediciones" %>
 <html>
     <head>
@@ -8,8 +6,7 @@
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
-
-        <div class="ui-widget ">
+		<div id="body" class="body">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -65,40 +62,34 @@
                     </table>
                 </div>
             </g:form>
+            </div>
+            <br><br>
+           <button id="continue">Continuar</button>
+           <button id="clear">Limpiar</button>
         </div>
-                <script type="text/javascript">
-            	$(function() {
-            		$( "#datepicker" ).datepicker();
-            	});
+        <script type="text/javascript">
+    	$(function() {
+    		$( "#datepicker" ).datepicker();
+    	});
 
-        $(function() {
-            $('#dialog-form').dialog({
-                autoOpen: true,
-                height: 'auto',
-                width: 350,
-                modal: true,
-                close: function(ev, ui) {  $(this).dialog("destroy"); },
-                buttons: {
-                    'Continuar': function() {
-		                var codigo = $("#codigo").val();
-		                var fecha = $("#datepicker").val();
-		                var horario = $("#horario").val();
-		                var lugar = $("#lugar").val();
-		                $.post('/coursesAdmin/ediciones/save', {codigo:codigo, fecha:fecha, horario:horario, lugar:lugar}, function(data) {
-		                	$('#dialog-form').html(data);
-                        });
-        
-                    },
-                    'Cancelar': function() {
-                        $(this).dialog('close');
-                        $(this).dialog("destroy");
-                    }
-                }
+        $("button").button();
+	    $("#continue").click(function(){
+            var codigo = $("#codigo").val();
+            var fecha = $("#datepicker").val();
+            var horario = $("#horario").val();
+            var lugar = $("#lugar").val();
+            $.post('/coursesAdmin/ediciones/save', {codigo:codigo, fecha:fecha, horario:horario, lugar:lugar}, function(data) {
+	    		$('.body').html(data);
             });
-        });
-        $('#Ediciones_add').click(function() {
-        	$('#dialog-form').dialog('open');
-        	});
+	    });
+	    $("#clear").click(function(){
+		    $(':input','#dialog-form')
+		    .not(':button, :submit, :reset, :hidden')
+		    .val('')
+		    .removeAttr('checked')
+		    .removeAttr('selected');
+	    });
+    	
         </script>
     </body>
 </html>

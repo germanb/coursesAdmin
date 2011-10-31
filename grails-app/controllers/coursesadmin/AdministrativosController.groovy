@@ -51,7 +51,7 @@ class AdministrativosController {
             return [administrativosInstance: administrativosInstance]
         }
     }
-
+	
     def update = {
         def administrativosInstance = Administrativos.get(params.id)
         if (administrativosInstance) {
@@ -74,6 +74,7 @@ class AdministrativosController {
             }
         }
         else {
+		
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'administrativos.label', default: 'Administrativos'), params.id])}"
             redirect(action: "list")
         }

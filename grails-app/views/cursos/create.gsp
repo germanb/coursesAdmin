@@ -6,7 +6,7 @@
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="body">
+        <div id="body" class="body">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -21,6 +21,14 @@
                 <div class="dialog">
                     <table>
                         <tbody>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="nombre"><g:message code="cursos.nombre.label" default="Nombre" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'nombre', 'errors')}">
+                                    <g:textField name="nombre" value="${cursosInstance?.nombre}" />
+                                </td>
+                            </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="costo"><g:message code="cursos.costo.label" default="Costo" /></label>
@@ -55,14 +63,6 @@
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="nombre"><g:message code="cursos.nombre.label" default="Nombre" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'nombre', 'errors')}">
-                                    <g:textField name="nombre" value="${cursosInstance?.nombre}" />
-                                </td>
-                            </tr>
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="obligatorio"><g:message code="cursos.obligatorio.label" default="Obligatorio" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'obligatorio', 'errors')}">
@@ -76,6 +76,7 @@
             </div>
             <br><br>
            <button id="continue">Continuar</button>
+           <button id="clear">Limpiar</button>
         </div>
      
         <script type="text/javascript">
@@ -93,7 +94,13 @@
 	    		$('.body').html(data);
             });
 	    });
-        
+	    $("#clear").click(function(){
+		    $(':input','#dialog-form')
+		    .not(':button, :submit, :reset, :hidden')
+		    .val('')
+		    .removeAttr('checked')
+		    .removeAttr('selected');
+	    });
         </script>
     </body>
 </html>

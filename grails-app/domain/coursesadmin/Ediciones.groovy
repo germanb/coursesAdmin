@@ -12,4 +12,5 @@ class Ediciones {
 	String fecha
 	String horario
 	String codigo
+	Cursos curso
 }

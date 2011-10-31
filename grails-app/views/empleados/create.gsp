@@ -110,13 +110,13 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="buttons">
-                    <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
-                </div>
-            </g:form>
+ 			</g:form>
             </div>
+            <br><br>
+           <button id="continue">Continuar</button>
+           <button id="clear">Limpiar</button>
         </div>
-                <script type="text/javascript">
+        <script type="text/javascript">
 
                 $(function() {
             		$( "#datepicker" ).datepicker({
@@ -124,43 +124,33 @@
             			altFormat: "dd/mm/yy"
                 		});
             	});
-                
-        $(function() {
-            $('#dialog-form').dialog({
-                autoOpen: true,
-                height: 'auto',
-                width: 350,
-                modal: true,
-                close: function(ev, ui) {  $(this).dialog("destroy"); },
-                buttons: {
-                    'Continuar': function() {
-	        	    	var capacitado = $("#capacitado").val();
-	        	    	var codigo = $("#codigo").val();
-	        	    	var direccion = $("#direccion").val();
-	        	    	var firma = $("#firma").val();
-	        	    	var nombre = $("#nombre").val();
-	        	    	var obligatorio = $("#obligatorio").val();
-	        	    	var nacimiento = $("#datepicker").val();
-	        	    	var salario = $("#salario").val();
-	        	    	var sexo = $("#sexo").val();
-	        	    	var telefono = $("#telefono").val();
-		                $.post('/coursesAdmin/empleados/save',{capacitado:capacitado, codigo:codigo, direccion:direccion,
-			                firma:firma, nombre:nombre, obligatorio:obligatorio, nacimiento:nacimiento, salario:salario,
-			                sexo:sexo, telefono:telefono},  function(data) {
-		                	$('#dialog-form').html(data);
-                        });
-        
-                    },
-                    'Cancelar': function() {
-                        $(this).dialog('close');
-                        $(this).dialog("destroy");
-                    }
-                }
-            });
-        });
-        $('#Cursos_add').click(function() {
-        	$('#dialog-form').dialog('open');
-        	});
+
+                $("button").button();
+        	    $("#continue").click(function(){
+          	    	var capacitado = $("#capacitado").val();
+        	    	var codigo = $("#codigo").val();
+        	    	var direccion = $("#direccion").val();
+        	    	var firma = $("#firma").val();
+        	    	var nombre = $("#nombre").val();
+        	    	var obligatorio = $("#obligatorio").val();
+        	    	var nacimiento = $("#datepicker").val();
+        	    	var salario = $("#salario").val();
+        	    	var sexo = $("#sexo").val();
+        	    	var telefono = $("#telefono").val();
+	                $.post('/coursesAdmin/empleados/save',{capacitado:capacitado, codigo:codigo, direccion:direccion,
+		                firma:firma, nombre:nombre, obligatorio:obligatorio, nacimiento:nacimiento, salario:salario,
+		                sexo:sexo, telefono:telefono},  function(data) {
+			                $('.body').html(data);
+                    });
+        	    });
+        	    $("#clear").click(function(){
+        		    $(':input','#dialog-form')
+        		    .not(':button, :submit, :reset, :hidden')
+        		    .val('')
+        		    .removeAttr('checked')
+        		    .removeAttr('selected');
+        	    });
+
         </script>
     </body>
 </html>

@@ -9,12 +9,7 @@
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-        </div>
-        <div class="body">
+        <div class="ui-widget">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -42,10 +37,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="fecha"><g:message code="ediciones.fecha.label" default="Fecha" /></label>
+                                    <label for="fecha"><g:message code="ediciones.fecha.label" default="Fecha" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: edicionesInstance, field: 'fecha', 'errors')}">
-                                    <g:datePicker name="fecha" precision="day" value="${edicionesInstance?.fecha}"  />
+									 <div id="datepicker"></div>
                                 </td>
                             </tr>
                         
@@ -70,11 +65,33 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
-                    <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
-                </div>
+                <br><br>
+           		<button id="update">Actualizar</button>
             </g:form>
+            <div id="footer" style="height:100%;" class="ui-widget ui-helper-clearfix">
         </div>
+        </div>
+        <script type="text/javascript">
+
+    	$(function() {
+    		$( "#datepicker" ).datepicker();
+    	});
+    	
+        	$("button").button();
+    	    $("#update").click(function(){
+                var codigo = $("#codigo").val();
+                var fecha = $("#datepicker").val();
+                var horario = $("#horario").val();
+                var lugar = $("#lugar").val();
+                var id = $("#id").val();
+                var version = $("#version").val();
+                var _action_update = "Update"
+                $.post('/coursesAdmin/ediciones/index', {_action_update:_action_update, id: id, version:version, 
+                	 codigo:codigo, fecha:fecha, horario:horario, lugar:lugar}, function(data) {
+         	    		$('.body').html(data);
+    	    		return false;
+                });
+    	    });
+        </script>
     </body>
 </html>

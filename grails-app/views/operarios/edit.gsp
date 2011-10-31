@@ -49,5 +49,6 @@
                 </div>
             </g:form>
         </div>
+        <div id="footer" style="height:100%;" class="ui-widget ui-helper-clearfix">
     </body>
 </html>
