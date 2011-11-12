@@ -22,6 +22,9 @@ class OperariosController {
     def save = {
         def operariosInstance = new Operarios(params)
         if (operariosInstance.save(flush: true)) {
+			def empleadosInstance = Empleados.get(params.id)
+			empleadosInstance.tipo = params.tipo
+			empleadosInstance.save(flush:true)
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'operarios.label', default: 'Operarios'), operariosInstance.id])}"
             redirect(action: "show", id: operariosInstance.id)
         }

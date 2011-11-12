@@ -16,26 +16,41 @@
             <div class="homePagePanel">
                 <div id="accordion" style="float:left; margin-top:20px;margin-left:30px;width:228px;">
                     <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <h3><a id="${c.fullName.substring(13,c.fullName.length()-10)}"  href="#">${c.fullName.substring(13,c.fullName.length()-10)}</a></h3>
+                        <h3 id="${c.fullName.substring(13,c.fullName.length()-10)}_h"><a id="${c.fullName.substring(13,c.fullName.length()-10)}"  href="#">${c.fullName.substring(13,c.fullName.length()-10)}</a></h3>
 				    		<ul>
 								 <li><a href="#" id='${c.fullName.substring(13,c.fullName.length()-10)}_add'>Agregar</a></li>								
 								<li><a id="${c.fullName.substring(13,c.fullName.length()-10)}_list" href="#">Listar</a></li>
 							</ul>
                     </g:each>
+					<h3><a id="configuracion"  href="#">Configuraci&oacute;n</a></h3>
+                    <ul>
+                     	<li><div class="ui-corner-right" id="switcher"></div></li>	
+                    </ul>
 				</div>
             </div>
         </div>
         <div id="pageBody" class="ui-widget ">
        <!--      <h1>Bienvenido al Sistema de Administracion de Cursos</h1> -->
         </div>
+       
         <div id="footer" style="height:100%;" class="ui-widget ui-helper-clearfix">
        
         </div>
         <script type="text/javascript">
-        
+        var icons = {
+    			header: "ui-icon-circle-arrow-e",
+    			headerSelected: "ui-icon-circle-arrow-s"
+    		};
         $(function() {
-    		$( "#accordion" ).accordion();
+    		$( "#accordion" ).accordion({
+    			icons: icons,
+    			autoHeight:false,
+    			collapsible: true,
+    			active: false 
+    		});
     	});
+        $("#Administrativos_h").hide();
+        $("#Operarios_h").hide();
 	    $("#Administrativos").click(function(){
 	   		$('#pageBody').load('/coursesAdmin/administrativos/index #body');
 	   		}
@@ -95,7 +110,27 @@
 	    $("#Operarios").click(function(){
 	   		$('#pageBody').load('/coursesAdmin/operarios/index #body');
 	   		}
-	   	);
+	   	);       
+
+	   	$(document).ready(function(){
+	   		
+
+  		$('a').live('click',function(event){
+  			event.preventDefault();
+
+  			if(this.href.indexOf("edit") != -1){  			
+  				$('#body').load(this.href );
+  			}else if(this.href.indexOf("list") != -1){  			
+  				$('#body').load(this.href + ' #body' );
+  			}else if(this.href.indexOf("") == -1){   			
+  				$('#body').load(this.href + ' #body');
+  			}
+  		 })
+  		});
+	   	$(document).ready(function(){
+	   		$('#switcher').themeswitcher({buttonPreText:'Tema: ', initialText:'Temas '});
+
+	   		});
 
         </script>
     </body>

@@ -20,6 +20,8 @@ class CursosController {
     }
 
     def save = {
+		def cursosInstanceObligatorio = Cursos.get(params.obligatorio as Long)
+		params.obligatorio = cursosInstanceObligatorio
         def cursosInstance = new Cursos(params)
         if (cursosInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'cursos.label', default: 'Cursos'), cursosInstance.id])}"

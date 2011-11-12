@@ -23,7 +23,10 @@ class AdministrativosController {
         def administrativosInstance = new Administrativos(params)
         if (administrativosInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'administrativos.label', default: 'Administrativos'), administrativosInstance.id])}"
-            redirect(action: "show", id: administrativosInstance.id)
+			def empleadosInstance = Empleados.get(params.id)
+			empleadosInstance.tipo = params.tipo
+			empleadosInstance.save(flush:true)
+			redirect(action: "show", id: administrativosInstance.id)
         }
         else {
             render(view: "create", model: [administrativosInstance: administrativosInstance])

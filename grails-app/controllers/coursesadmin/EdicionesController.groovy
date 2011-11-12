@@ -20,6 +20,7 @@ class EdicionesController {
     }
 
     def save = {
+		params.curso = Cursos.get(params.curso)
         def edicionesInstance = new Ediciones(params)
         if (edicionesInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'ediciones.label', default: 'Ediciones'), edicionesInstance.id])}"

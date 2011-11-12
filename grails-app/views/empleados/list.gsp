@@ -19,18 +19,20 @@
                     <thead>
                         <tr>
                         
-                            <g:sortableColumn property="id" title="${message(code: 'empleados.id.label', default: 'Id')}" />
+                            <g:sortableColumn  property="id" title="${message(code: 'empleados.id.label', default: 'Id')}" />
                         
-                            <g:sortableColumn property="capacitado" title="${message(code: 'empleados.capacitado.label', default: 'Capacitado')}" />
-                        
-                            <g:sortableColumn property="codigo" title="${message(code: 'empleados.codigo.label', default: 'Codigo')}" />
-                        
+                            <g:sortableColumn  property="nombre" title="${message(code: 'empleados.nombre.label', default: 'Nombre')}" />
+
+                            <g:sortableColumn  property="sexo" title="${message(code: 'empleados.sexo.label', default: 'Sexo')}" />
+
+                            <g:sortableColumn  property="telefono" title="${message(code: 'empleados.telefono.label', default: 'Telefono')}" />
+
                             <g:sortableColumn property="direccion" title="${message(code: 'empleados.direccion.label', default: 'Direccion')}" />
                         
-                            <g:sortableColumn property="firma" title="${message(code: 'empleados.firma.label', default: 'Firma')}" />
-                        
-                            <g:sortableColumn property="nacimiento" title="${message(code: 'empleados.nacimiento.label', default: 'Nacimiento')}" />
-                        
+                            <g:sortableColumn property="capacitado" title="${message(code: 'empleados.capacitado.label', default: 'Capacitado')}" />
+ 
+                             <g:sortableColumn property="tipo" title="${message(code: 'empleados.tipo.label', default: 'Tipo')}" />
+ 
                         </tr>
                     </thead>
                     <tbody>
@@ -39,16 +41,17 @@
                         
                             <td><g:link action="edit" id="${empleadosInstance.id}">${fieldValue(bean: empleadosInstance, field: "id")}</g:link></td>
                         
-                            <td>${fieldValue(bean: empleadosInstance, field: "capacitado")}</td>
+                            <td>${fieldValue(bean: empleadosInstance, field: "nombre")}</td>
+
+                            <td>${fieldValue(bean: empleadosInstance, field: "sexo")}</td>
                         
-                            <td>${fieldValue(bean: empleadosInstance, field: "codigo")}</td>
-                        
-                            <td>${fieldValue(bean: empleadosInstance, field: "direccion")}</td>
-                        
-                            <td>${fieldValue(bean: empleadosInstance, field: "firma")}</td>
-                        
-                            <td>${fieldValue(bean: empleadosInstance, field: "nacimiento")}</td>
-                        
+                        	<td>${fieldValue(bean: empleadosInstance, field: "telefono")}</td>
+                        		
+                        	<td>${fieldValue(bean: empleadosInstance, field: "direccion")}</td>
+                        	
+                        	<td>${fieldValue(bean: empleadosInstance, field: "capacitado")}</td>
+                        	
+                        	<td>${fieldValue(bean: empleadosInstance, field: "tipo")}</td>
                         </tr>
                     </g:each>
                     </tbody>
@@ -68,17 +71,9 @@
 
         $(".button").button();
 
+        
 
         
-        $(document).ready(function(){
-  		  $('.update').bind('click',function(event){
-  			event.preventDefault();
-  		    $.get(this.href,{},function(response){ 
-  		 	   $('.body').html(response)
-  		    })	
-  		 })
-  		});
-
 	    $("#continue").click(function(){
   	    	var capacitado = $("#capacitado").val();
 	    	var codigo = $("#codigo").val();

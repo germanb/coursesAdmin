@@ -4,12 +4,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main" />
+
         <g:set var="entityName" value="${message(code: 'empleados.label', default: 'Empleados')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="ui-widget">
+         <div class="ui-widget "  id="body">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -25,43 +25,25 @@
                 <div class="dialog">
                     <table>
                         <tbody>
-                        
-                            <tr class="prop">
+                        	<tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="capacitado"><g:message code="empleados.capacitado.label" default="Capacitado" /></label>
+                                    <label for="nombre"><g:message code="empleados.nombre.label" default="Nombre" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'capacitado', 'errors')}">
-                                    <g:textField name="capacitado" value="${empleadosInstance?.capacitado}" />
+                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'nombre', 'errors')}">
+                                    <g:textField name="nombre" value="${empleadosInstance?.nombre}" />
                                 </td>
                             </tr>
-                        
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="codigo"><g:message code="empleados.codigo.label" default="Codigo" /></label>
+                                    <label for="sexo"><g:message code="empleados.sexo.label" default="Sexo" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'codigo', 'errors')}">
-                                    <g:textField name="codigo" value="${empleadosInstance?.codigo}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="direccion"><g:message code="empleados.direccion.label" default="Direccion" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'direccion', 'errors')}">
-                                    <g:textField name="direccion" value="${empleadosInstance?.direccion}" />
+                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'sexo', 'errors')}">
+									<div id="sexo_radio">
+										<input type="radio" id="sexo_radio1" name="sexo_radio" value="Masculino" checked="checked" /><label for="sexo_radio1">Masculino</label>
+										<input type="radio" id="sexo_radio2" name="sexo_radio"  value="Femenino"/><label for="sexo_radio2">Femenino</label>
+									</div>
                                 </td>
                             </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="firma"><g:message code="empleados.firma.label" default="Firma" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'firma', 'errors')}">
-                                    <g:textField name="firma" value="${empleadosInstance?.firma}" />
-                                </td>
-                            </tr>
-                        
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="nacimiento"><g:message code="empleados.nacimiento.label" default="Nacimiento" /></label>
@@ -70,43 +52,42 @@
 									<input id="datepicker">
                                 </td>
                             </tr>
-                        
-                            <tr class="prop">
+							<tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="nombre"><g:message code="empleados.nombre.label" default="Nombre" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'nombre', 'errors')}">
-                                    <g:textField name="nombre" value="${empleadosInstance?.nombre}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="salario"><g:message code="empleados.salario.label" default="Salario" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'salario', 'errors')}">
-                                    <g:textField name="salario" value="${fieldValue(bean: empleadosInstance, field: 'salario')}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="sexo"><g:message code="empleados.sexo.label" default="Sexo" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'sexo', 'errors')}">
-                                    <g:textField name="sexo" value="${empleadosInstance?.sexo}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="telefono"><g:message code="empleados.telefono.label" default="Telefono" /></label>
+                                    <label for="telefono"><g:message code="empleados.telefono.label" default="Telefono" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'telefono', 'errors')}">
                                     <g:textField name="telefono" value="${empleadosInstance?.telefono}" />
                                 </td>
                             </tr>
-                        
+                                                 
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="direccion"><g:message code="empleados.direccion.label" default="Direccion" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'direccion', 'errors')}">
+                                    <g:textField name="direccion" value="${empleadosInstance?.direccion}" />
+                                </td>
+                            </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="salario"><g:message code="empleados.salario.label" default="Salario" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'salario', 'errors')}">
+                                    <g:textField name="salario" value="${fieldValue(bean: empleadosInstance, field: 'salario')}" />
+                                </td>
+                            </tr>
+                        	<tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="capacitado"><g:message code="empleados.capacitado.label" default="Capacitado" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'capacitado', 'errors')}">
+                                    <div id="capacitado_radio">
+										<input type="radio" id="capacitado_radio1" name="capacitado_radio" value="Si" checked="checked" /><label for="capacitado_radio1">Si</label>
+										<input type="radio" id="capacitado_radio2" name="capacitado_radio" value="No" /><label for="capacitado_radio2">No</label>
+									</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -115,14 +96,30 @@
             </g:form>
             <div id="footer" style="height:100%;" class="ui-widget ui-helper-clearfix">
         </div>
-        </div>
+        
         <script type="text/javascript">
 
-    	$(function() {
-    		$( "#datepicker" ).datepicker();
+
+     	   $("#telefono").mask("(9999) 999-9999");
+
+        
+        $.datepicker.setDefaults("es");
+        $(function() {
+    		$( "#datepicker" ).datepicker({
+    			altField: "#datepicker",
+    			altFormat: "dd/mm/yy",
+    			changeMonth: true,
+    			changeYear: true,
+    			minDate: "-80Y", 
+    			maxDate: "-18Y",
+    			yearRange: '1910:2000',
+    		    showOn: "both", 
+    		    buttonImage: "images/calendar.gif", 
+    		    buttonImageOnly: true 
+        		});
     	});
     	
-        	$("button").button();
+        	$("#update").button();
     	    $("#update").click(function(){
       	    	var capacitado = $("#capacitado").val();
     	    	var codigo = $("#codigo").val();
@@ -145,6 +142,20 @@
     	    		return false;
                 });
     	    });
+            $(document).ready(function() {
+                $("#capacitado_radio").buttonset();
+                $("#sexo_radio").buttonset();
+    			if("${fieldValue(bean: empleadosInstance, field: 'sexo')}" == 'Femenino'){
+    				$("#sexo_radio2").attr('checked', true);
+    			}
+    			if("${fieldValue(bean: empleadosInstance, field: 'capacitado')}" == 'No'){
+    				$("#capacitado_radio2").attr('checked', true);
+    			}
+    			if("${fieldValue(bean: empleadosInstance, field: 'capacitado')}" != null){
+    				$("#datepicker").val("${fieldValue(bean: empleadosInstance, field: 'nacimiento')}");
+    			}
+              });
         </script>
+        </div>
     </body>
 </html>

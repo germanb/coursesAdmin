@@ -10,4 +10,5 @@ class Administrativos {
 	String oficina
 	String tarea
 	String categoria
+
 }

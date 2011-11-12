@@ -8,8 +8,7 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-
-        <div class="ui-widget" id="body">
+        <div id="body" class="ui-widget">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -35,6 +34,7 @@
                     </thead>
                     <tbody>
                     <g:each in="${cursosInstanceList}" status="i" var="cursosInstance">
+                    <g:if test="${cursosInstance.nombre != 'Ninguno'}">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
                             <td><g:link action="edit" id="${cursosInstance.id}">${fieldValue(bean: cursosInstance, field: "id")}</g:link></td>
@@ -50,6 +50,7 @@
                             <td>${fieldValue(bean: cursosInstance, field: "nombre")}</td>
                         
                         </tr>
+                    </g:if>
                     </g:each>
                     </tbody>
                 </table>

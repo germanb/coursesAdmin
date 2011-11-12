@@ -97,4 +97,15 @@ class EmpleadosController {
             redirect(action: "list")
         }
     }
+	
+	def selectType = {
+		def empleadosInstance = Empleados.get(params.id)
+		if (!empleadosInstance) {
+			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'empleados.label', default: 'Empleados'), params.id])}"
+			redirect(action: "list")
+		}
+		else {
+			render(view: "selectType", model: [empleadosInstance: empleadosInstance])
+		}
+	}
 }

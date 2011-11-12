@@ -50,9 +50,15 @@
                                     <label for="destinatarios"><g:message code="cursos.destinatarios.label" default="Destinatarios" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'destinatarios', 'errors')}">
-                                    <g:textField name="destinatarios" value="${cursosInstance?.destinatarios}" />
+									<div id="dest_radio">
+										<input type="radio" id="dest_radio1" name="dest_radio" value="Administrativos" /><label for="dest_radio1">Administrativos</label>
+										<input type="radio" id="dest_radio2" name="dest_radio"  value="Operarios"/><label for="dest_radio2">Operarios</label>
+										<input type="radio" id="dest_radio3" name="dest_radio"  value="Todos"/><label for="dest_radio3">Todos</label>
+									
+									</div>
                                 </td>
                             </tr>
+                            
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="horas"><g:message code="cursos.horas.label" default="Horas" /></label>
@@ -66,7 +72,7 @@
                                     <label for="obligatorio"><g:message code="cursos.obligatorio.label" default="Obligatorio" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'obligatorio', 'errors')}">
-                                    <g:select  name="obligatorio.id" from="${coursesadmin.Cursos.list()}" optionKey="id" optionValue="nombre" value="${cursosInstance?.obligatorio?.id}"  />
+                                    <g:select  name="obligatorio" from="${coursesadmin.Cursos.list()}" optionKey="id" optionValue="nombre" value="${cursosInstance?.obligatorio?.id}"  />
                                 </td>
                             </tr>
                         </tbody>
@@ -80,12 +86,12 @@
         </div>
      
         <script type="text/javascript">
-        
+        $("#dest_radio").buttonset();
         $("button").button();
 	    $("#continue").click(function(){
 	    	var costo = $("#costo").val();
 	    	var descripcion = $("#descripcion").val();
-	    	var destinatarios = $("#destinatarios").val();
+	    	var destinatarios = $('input[name=dest_radio]:checked').val()
 	    	var horas = $("#horas").val();
 	    	var nombre = $("#nombre").val();
 	    	var obligatorio = $("#obligatorio").val();
@@ -100,7 +106,22 @@
 		    .val('')
 		    .removeAttr('checked')
 		    .removeAttr('selected');
+		    $("#dest_radio1").attr('checked', false).button("refresh");
+		    $("#dest_radio2").attr('checked', false).button("refresh");
+		    $("#dest_radio3").attr('checked', false).button("refresh");
 	    });
+
+        $(document).ready(function() {
+			if("${fieldValue(bean: cursosInstance, field: 'destinatarios')}" == 'Administrativos'){
+				$("#dest_radio1").attr('checked', true).button("refresh");
+			}
+			if("${fieldValue(bean: cursosInstance, field: 'destinatarios')}" == 'Operarios'){
+				$("#dest_radio2").attr('checked', true).button("refresh");
+			}
+			if("${fieldValue(bean: cursosInstance, field: 'destinatarios')}" == 'Todos'){
+				$("#dest_radio3").attr('checked', true).button("refresh");
+			}
+          });
         </script>
     </body>
 </html>

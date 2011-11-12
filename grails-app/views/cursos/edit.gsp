@@ -1,5 +1,3 @@
-
-
 <%@ page import="coursesadmin.Cursos" %>
 <html>
     <head>

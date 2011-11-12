@@ -3,6 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
         <g:set var="entityName" value="${message(code: 'ediciones.label', default: 'Ediciones')}" />
         <title><g:message code="default.show.label" args="[entityName]" /></title>
     </head>
@@ -24,9 +25,9 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="ediciones.codigo.label" default="Codigo" /></td>
+                            <td valign="top" class="name"><g:message code="ediciones.lugar.label" default="Lugar" /></td>
                             
-                            <td valign="top" class="value">${fieldValue(bean: edicionesInstance, field: "codigo")}</td>
+                            <td valign="top" class="value">${fieldValue(bean: edicionesInstance, field: "lugar")}</td>
                             
                         </tr>
                     
@@ -41,20 +42,17 @@
                             <td valign="top" class="name"><g:message code="ediciones.horario.label" default="Horario" /></td>
                             
                             <td valign="top" class="value">${fieldValue(bean: edicionesInstance, field: "horario")}</td>
-                            
-                        </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="ediciones.lugar.label" default="Lugar" /></td>
+                            <td valign="top" class="name"><g:message code="ediciones.curso.label" default="Curso" /></td>
                             
-                            <td valign="top" class="value">${fieldValue(bean: edicionesInstance, field: "lugar")}</td>
+                            <td valign="top" class="value"><g:link controller="cursos" action="show" id="${edicionesInstance?.curso?.id}">${edicionesInstance?.curso?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     
                     </tbody>
                 </table>
             </div>
-
         </div>
     </body>
 </html>
