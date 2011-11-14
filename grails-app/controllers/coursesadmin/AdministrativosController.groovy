@@ -26,7 +26,7 @@ class AdministrativosController {
 			def empleadosInstance = Empleados.get(params.id)
 			empleadosInstance.tipo = params.tipo
 			empleadosInstance.save(flush:true)
-			redirect(action: "show", id: administrativosInstance.id)
+			redirect(action: "list", params: params)
         }
         else {
             render(view: "create", model: [administrativosInstance: administrativosInstance])

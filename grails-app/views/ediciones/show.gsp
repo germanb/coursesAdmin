@@ -41,12 +41,12 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="ediciones.horario.label" default="Horario" /></td>
                             
-                            <td valign="top" class="value">${fieldValue(bean: edicionesInstance, field: "horario")}</td>
-                    
+                            <td valign="top" class="value">${fieldValue(bean: edicionesInstance, field: "horario").replaceAll("ñ","&ntilde;")}</td>
+                    	</tr>
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="ediciones.curso.label" default="Curso" /></td>
                             
-                            <td valign="top" class="value"><g:link controller="cursos" action="show" id="${edicionesInstance?.curso?.id}">${edicionesInstance?.curso?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="cursos" action="show" id="${edicionesInstance?.curso?.id}">${edicionesInstance?.curso?.nombre.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     

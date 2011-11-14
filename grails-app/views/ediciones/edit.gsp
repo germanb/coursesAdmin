@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main" />
+
         <g:set var="entityName" value="${message(code: 'ediciones.label', default: 'Ediciones')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
@@ -47,17 +47,12 @@
                                   <label for="horario"><g:message code="ediciones.horario.label" default="Horario" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: edicionesInstance, field: 'horario', 'errors')}">
-                                    <g:textField name="horario" value="${edicionesInstance?.horario}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="codigo"><g:message code="ediciones.codigo.label" default="Codigo" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: edicionesInstance, field: 'codigo', 'errors')}">
-                                    <g:textField name="codigo" value="${edicionesInstance?.codigo}" />
-                                </td>
+                                    <div id="horario_radio">
+										<input type="radio" id="horario_radio1" name="horario_radio" value="Mañana" checked="checked" /><label for="horario_radio1">Ma&ntilde;ana</label>
+										<input type="radio" id="horario_radio2" name="horario_radio" value="Tarde" /><label for="horario_radio2">Tarde</label>
+									    <input type="radio" id="horario_radio3" name="horario_radio" value="Intensivo" /><label for="horario_radio3">Intensivo</label>
+									
+									</div>                                </td>
                             </tr>
                         
                             <tr class="prop">
@@ -65,7 +60,7 @@
                                   <label for="curso"><g:message code="ediciones.curso.label" default="Curso" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: edicionesInstance, field: 'curso', 'errors')}">
-                                    <g:select name="curso.id" from="${coursesadmin.Cursos.list()}" optionKey="id" value="${edicionesInstance?.curso?.id}"  />
+                                    <g:select name="curso" from="${coursesadmin.Cursos.list()}" optionValue="nombre" optionKey="id" value="${edicionesInstance?.curso?.id}"  />
                                 </td>
                             </tr>
                         
@@ -79,24 +74,61 @@
         </div>
         </div>
         <script type="text/javascript">
-        	$("button").button();
+
+
+            $(function() {
+        		$( "#datepicker" ).datepicker();
+        	});
+
+            $("button").button();
     	    $("#update").click(function(){
-    	    	var nombre = $("#lugar").val();
-    	    	var fecha = $("#fecha").val();
-    	    	var horario = $("#horario").val();
-    	    	var codigo = $("#codigo").val();
-    	    	var curso = $("#curso").val();
-    	    	
                 var id = $("#id").val();
                 var version = $("#version").val();
                 var _action_update = "Update"
-                $.post('/coursesAdmin/ediciones/index', {_action_update:_action_update, id: id, version:version, 
-                	lugar:lugar, fecha:fecha, horario:horario, codigo:codigo,
-    		    	curso:curso}, function(data) {
+                var fecha = $("#datepicker").val();
+                var horario = $('input[name=horario_radio]:checked').val();
+                var lugar = $("#lugar").val();
+                var curso = $("#curso").val();
+                $.post('/coursesAdmin/ediciones/save', {_action_update:_action_update, id: id, version:version
+                    ,curso: curso, fecha:fecha, horario:horario, lugar:lugar}, function(data) {
     	    		$('.body').html(data);
-    	    		return false;
                 });
     	    });
+    	    $("#clear").click(function(){
+    		    $(':input','#dialog-form')
+    		    .not(':button, :submit, :reset, :hidden')
+    		    .val('')
+    		    .removeAttr('checked')
+    		    .removeAttr('selected');
+    		    $("#horario_radio1").attr('checked', true).button("refresh");
+    	    });
+
+    	    $(function() {
+    			var availableTags = [
+    				"Sala 1",
+    				"Sala 2",
+    				"Sala 3",
+    				"Auditorio General",
+    				"Auditorio",
+    				"Sala de videoconferencia 1",
+    				"Sala de videoconferencia 2",
+    				"Aula virtual"
+    			];
+    			$( "#lugar" ).autocomplete({
+    				source: availableTags
+    			});
+    		});
+
+    	    $("#horario_radio").buttonset();
+    		if("${fieldValue(bean: edicionesInstance, field: 'horario')}" == 'Mañana'){
+    			$("#horario_radio1").attr('checked', true).button("refresh");;
+    		}
+    		if("${fieldValue(bean: edicionesInstance, field: 'horario')}" == 'Tarde'){
+    			$("#horario_radio2").attr('checked', true).button("refresh");;
+    		}
+    		if("${fieldValue(bean: edicionesInstance, field: 'horario')}" == 'Intensivo'){
+    			$("#horario_radio3").attr('checked', true).button("refresh");;
+    		}
         </script>
     </body>
 </html>

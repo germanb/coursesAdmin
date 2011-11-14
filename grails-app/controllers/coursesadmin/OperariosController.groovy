@@ -26,7 +26,7 @@ class OperariosController {
 			empleadosInstance.tipo = params.tipo
 			empleadosInstance.save(flush:true)
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'operarios.label', default: 'Operarios'), operariosInstance.id])}"
-            redirect(action: "show", id: operariosInstance.id)
+           redirect(action: "list", params: params)
         }
         else {
             render(view: "create", model: [operariosInstance: operariosInstance])

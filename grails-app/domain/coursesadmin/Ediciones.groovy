@@ -12,4 +12,5 @@ class Ediciones {
 	String lugar
 	String fecha
 	String horario
+	String cursoPertenece
 }

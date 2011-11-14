@@ -34,12 +34,12 @@
                                     <label for="costo"><g:message code="cursos.costo.label" default="Costo" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'costo', 'errors')}">
-                                    <g:textField name="costo" value="${cursosInstance?.costo}" />
+                                    <g:textField name="costo" value="${cursosInstance?.costo ? cursosInstance?.costo: 0}" />
                                 </td>
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="descripcion"><g:message code="cursos.descripcion.label" default="Descripcion" /></label>
+                                    <label for="descripcion"><g:message code="cursos.descripcion.label" default="Descripci&oacute;n" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'descripcion', 'errors')}">
                                     <g:textField name="descripcion" value="${cursosInstance?.descripcion}" />
@@ -64,7 +64,7 @@
                                     <label for="horas"><g:message code="cursos.horas.label" default="Horas" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'horas', 'errors')}">
-                                    <g:textField name="horas" value="${cursosInstance?.horas}" />
+                                   <input type="number" name="horas" min="1" value="" id="horas">
                                 </td>
                             </tr>
                             <tr class="prop">
@@ -72,7 +72,7 @@
                                     <label for="obligatorio"><g:message code="cursos.obligatorio.label" default="Obligatorio" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'obligatorio', 'errors')}">
-                                    <g:select  name="obligatorio" from="${coursesadmin.Cursos.list()}" optionKey="id" optionValue="nombre" value="${cursosInstance?.obligatorio?.id}"  />
+                                    <g:select  noSelection="${[null:'Ninguno']}" name="obligatorio" from="${coursesadmin.Cursos.list()}" optionKey="id" optionValue="nombre" value="${cursosInstance?.obligatorio?.id}"  />
                                 </td>
                             </tr>
                         </tbody>
@@ -121,7 +121,15 @@
 			if("${fieldValue(bean: cursosInstance, field: 'destinatarios')}" == 'Todos'){
 				$("#dest_radio3").attr('checked', true).button("refresh");
 			}
+			$("#horas").val("${fieldValue(bean: cursosInstance, field: 'horas')}");
+
           });
+
+        $('#costo').priceFormat({
+            prefix: '$ ',
+            centsSeparator: ',',
+            thousandsSeparator: '.'
+        });
         </script>
     </body>
 </html>

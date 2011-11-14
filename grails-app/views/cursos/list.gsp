@@ -19,16 +19,18 @@
                         <tr>
                         
                             <g:sortableColumn property="id" title="${message(code: 'cursos.id.label', default: 'Id')}" />
+                            
+                             <g:sortableColumn property="nombre" title="${message(code: 'cursos.nombre.label', default: 'Nombre')}" />
                         
                             <g:sortableColumn property="costo" title="${message(code: 'cursos.costo.label', default: 'Costo')}" />
                         
-                            <g:sortableColumn property="descripcion" title="${message(code: 'cursos.descripcion.label', default: 'Descripcion')}" />
+                            <g:sortableColumn property="descripcion" title="${message(code: 'cursos.descripcion.label', default: 'Descripci&oacute;n')}" />
                         
                             <g:sortableColumn property="destinatarios" title="${message(code: 'cursos.destinatarios.label', default: 'Destinatarios')}" />
                         
                             <g:sortableColumn property="horas" title="${message(code: 'cursos.horas.label', default: 'Horas')}" />
                         
-                            <g:sortableColumn property="nombre" title="${message(code: 'cursos.nombre.label', default: 'Nombre')}" />
+                           
                         
                         </tr>
                     </thead>
@@ -39,6 +41,8 @@
                         
                             <td><g:link action="edit" id="${cursosInstance.id}">${fieldValue(bean: cursosInstance, field: "id")}</g:link></td>
                         
+                        	<td>${fieldValue(bean: cursosInstance, field: "nombre")}</td>
+                        
                             <td>${fieldValue(bean: cursosInstance, field: "costo")}</td>
                         
                             <td>${fieldValue(bean: cursosInstance, field: "descripcion")}</td>
@@ -47,7 +51,7 @@
                         
                             <td>${fieldValue(bean: cursosInstance, field: "horas")}</td>
                         
-                            <td>${fieldValue(bean: cursosInstance, field: "nombre")}</td>
+                            
                         
                         </tr>
                     </g:if>

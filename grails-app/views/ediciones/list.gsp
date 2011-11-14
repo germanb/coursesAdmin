@@ -21,13 +21,15 @@
                         
                             <g:sortableColumn property="id" title="${message(code: 'ediciones.id.label', default: 'Id')}" />
                         
+                        <th><g:message code="ediciones.curso.label" default="Curso" /></th>
+                        
                             <g:sortableColumn property="lugar" title="${message(code: 'ediciones.lugar.label', default: 'Lugar')}" />
                         
                             <g:sortableColumn property="fecha" title="${message(code: 'ediciones.fecha.label', default: 'Fecha')}" />
                         
                             <g:sortableColumn property="horario" title="${message(code: 'ediciones.horario.label', default: 'Horario')}" />
 
-                            <th><g:message code="ediciones.curso.label" default="Curso" /></th>
+                            
                         
                         </tr>
                     </thead>
@@ -35,15 +37,16 @@
                     <g:each in="${edicionesInstanceList}" status="i" var="edicionesInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${edicionesInstance.id}">${fieldValue(bean: edicionesInstance, field: "id")}</g:link></td>
+                            <td><g:link action="edit" id="${edicionesInstance.id}">${fieldValue(bean: edicionesInstance, field: "id")}</g:link></td>
                         
+                              <td>${fieldValue(bean: edicionesInstance, field: "curso.nombre")}</td>
                             <td>${fieldValue(bean: edicionesInstance, field: "lugar")}</td>
                         
                             <td>${fieldValue(bean: edicionesInstance, field: "fecha")}</td>
                         
-                            <td>${fieldValue(bean: edicionesInstance, field: "horario")}</td>
+                            <td>${fieldValue(bean: edicionesInstance, field: "horario").replaceAll("ñ","&ntilde;")}</td>
 
-                            <td>${fieldValue(bean: edicionesInstance, field: "curso.nombre")}</td>
+                          
                         
                         </tr>
                     </g:each>

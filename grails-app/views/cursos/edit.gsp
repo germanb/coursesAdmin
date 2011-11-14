@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'cursos.label', default: 'Cursos')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
@@ -35,7 +34,7 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="descripcion"><g:message code="cursos.descripcion.label" default="Descripcion" /></label>
+                                  <label for="descripcion"><g:message code="cursos.descripcion.label" default="Descripci&oacute;n" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'descripcion', 'errors')}">
                                     <g:textField name="descripcion" value="${cursosInstance?.descripcion}" />
@@ -74,7 +73,7 @@
                                   <label for="obligatorio"><g:message code="cursos.obligatorio.label" default="Obligatorio" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cursosInstance, field: 'obligatorio', 'errors')}">
-                                    <g:select name="obligatorio.id" from="${coursesadmin.Cursos.list()}" optionKey="id" value="${cursosInstance?.obligatorio?.id}"  />
+                                    <g:select noSelection="${[null:'Ninguno']}"  name="obligatorio.id" from="${coursesadmin.Cursos.list()}" optionKey="id" optionValue="nombre" value="${cursosInstance?.obligatorio?.id}"  />
                                 </td>
                             </tr>
                         

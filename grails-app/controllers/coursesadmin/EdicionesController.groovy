@@ -12,7 +12,13 @@ class EdicionesController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [edicionesInstanceList: Ediciones.list(params), edicionesInstanceTotal: Ediciones.count()]
     }
-
+	
+	def createConsulta = {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		if(!params.fecha)
+			params.fecha = "0"
+        [edicionesInstanceList: Ediciones.findAllByFecha(params.fecha), edicionesInstanceTotal: Ediciones.count()]
+	}
     def create = {
         def edicionesInstance = new Ediciones()
         edicionesInstance.properties = params
@@ -20,7 +26,9 @@ class EdicionesController {
     }
 
     def save = {
+		params.cursoPertenece = ((Cursos.get(params.curso)).nombre)
 		params.curso = Cursos.get(params.curso)
+
         def edicionesInstance = new Ediciones(params)
         if (edicionesInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'ediciones.label', default: 'Ediciones'), edicionesInstance.id])}"
@@ -43,6 +51,7 @@ class EdicionesController {
     }
 
     def edit = {
+		params.curso = Cursos.get(params.curso)
         def edicionesInstance = Ediciones.get(params.id)
         if (!edicionesInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'ediciones.label', default: 'Ediciones'), params.id])}"

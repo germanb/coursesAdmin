@@ -13,6 +13,7 @@ class CursosController {
         [cursosInstanceList: Cursos.list(params), cursosInstanceTotal: Cursos.count()]
     }
 
+
     def create = {
         def cursosInstance = new Cursos()
         cursosInstance.properties = params
@@ -20,8 +21,12 @@ class CursosController {
     }
 
     def save = {
-		def cursosInstanceObligatorio = Cursos.get(params.obligatorio as Long)
-		params.obligatorio = cursosInstanceObligatorio
+		if(params.obligatorio != "null"){
+			def cursosInstanceObligatorio = Cursos.get(params.obligatorio as Long)
+			params.obligatorio = cursosInstanceObligatorio
+		}else{
+			params.obligatorio = null
+		}
         def cursosInstance = new Cursos(params)
         if (cursosInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'cursos.label', default: 'Cursos'), cursosInstance.id])}"

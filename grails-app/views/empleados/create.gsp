@@ -54,7 +54,7 @@
                             </tr>
 							<tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="telefono"><g:message code="empleados.telefono.label" default="Telefono" /></label>
+                                    <label for="telefono"><g:message code="empleados.telefono.label" default="Tel&eacute;fono" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'telefono', 'errors')}">
                                     <g:textField name="telefono" value="${empleadosInstance?.telefono}" />
@@ -63,7 +63,7 @@
                                                  
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="direccion"><g:message code="empleados.direccion.label" default="Direccion" /></label>
+                                    <label for="direccion"><g:message code="empleados.direccion.label" default="Direcci&oacute;n" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: empleadosInstance, field: 'direccion', 'errors')}">
                                     <g:textField name="direccion" value="${empleadosInstance?.direccion}" />

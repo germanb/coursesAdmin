@@ -22,6 +22,11 @@
 								<li><a id="${c.fullName.substring(13,c.fullName.length()-10)}_list" href="#">Listar</a></li>
 							</ul>
                     </g:each>
+                   <h3><a id="consultas"  href="#">Consultas</a></h3>
+				    		<ul>
+								 <li><a href="#" id='consulta1'>Empleados</a></li>								
+								<li><a id="consulta2" href="#">Ediciones</a></li>
+							</ul>
 					<h3><a id="configuracion"  href="#">Configuraci&oacute;n</a></h3>
                     <ul>
                      	<li><div class="ui-corner-right" id="switcher"></div></li>	
@@ -111,7 +116,26 @@
 	   		$('#pageBody').load('/coursesAdmin/operarios/index #body');
 	   		}
 	   	);       
-
+	    $("#Participaciones_add").click(function(){
+	   		$('#pageBody').load('/coursesAdmin/participaciones/create');
+	   		}
+	   	);
+	    $("#Participaciones").click(function(){
+	   		$('#pageBody').load('/coursesAdmin/participaciones/index #body');
+	   		}
+	   	);    
+	    $("#Participaciones_list").click(function(){
+	   		$('#pageBody').load('/coursesAdmin/participaciones/index #body');
+	   		}
+	   	);
+	    $("#consulta1").click(function(){
+	   		$('#pageBody').load('/coursesAdmin/participaciones/createConsulta');
+	   		}
+	   	);
+	    $("#consulta2").click(function(){
+	   		$('#pageBody').load('/coursesAdmin/ediciones/createConsulta');
+	   		}
+	   	);
 	   	$(document).ready(function(){
 	   		
 

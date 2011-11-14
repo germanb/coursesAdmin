@@ -63,7 +63,7 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="cursos.obligatorio.label" default="Obligatorio" /></td>
                             
-                            <td valign="top" class="value"><g:link controller="cursos" action="show" id="${cursosInstance?.obligatorio?.id}">${cursosInstance?.obligatorio?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="cursos" action="show" id="${cursosInstance?.obligatorio?.id}">${cursosInstance?.obligatorio?.nombre ? cursosInstance?.obligatorio?.nombre  : "Ninguno"}</g:link></td>
                             
                         </tr>
                     
