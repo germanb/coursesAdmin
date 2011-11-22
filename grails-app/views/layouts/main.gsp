@@ -14,7 +14,7 @@
 		<script type="text/javascript" src="${resource(dir:'js',file:'price.js')}"></script>
     </head>
     <body>
-    	<div class="ui-widget-header ui-corner-tl ui-corner-tr"><h1 style=" margin: 10px ;">  Sistema de Administracion de Cursos</h1></div>
+    	<div class="ui-widget-header ui-corner-tl ui-corner-tr"><h1 style=" margin: 10px ;">  Sistema de Administraci&oacute;n de Cursos</h1></div>
 		<div class="ui-widget-content ui-corner-bl ui-corner-br">
 			<div id="spinner" class="spinner" style="display:none;"><img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}" /></div>  
         	<br>

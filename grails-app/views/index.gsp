@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Sistema de Admininstracion de Cursos</title>
+        <title>Sistema de Admininstraci&oacute;n de Cursos</title>
         <meta name="layout" content="main" />
         <style type="text/css" media="screen">
 
@@ -156,6 +156,10 @@
 
 	   		});
 
+
+
         </script>
+        
+
     </body>
 </html>
