@@ -21,7 +21,7 @@ class ParticipacionesController {
 		
 		def dataSource
 		Sql sql = Sql.newInstance( 'jdbc:mysql://127.0.0.1:3306/courses', 'root',
-			'Ml123456', 'org.hibernate.dialect.MySQL5InnoDBDialect' )
+			'123456', 'org.hibernate.dialect.MySQL5InnoDBDialect' )
 		def resultSet  = []
 		sql.eachRow( "call GetEmpleadosCursanFecha(${params.fecha},${params.fecha2})" ) { 
 			def result = [:]
